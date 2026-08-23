@@ -1,6 +1,7 @@
-import MenuItem from "../models/MenuItem.js";
 
-// GET ALL MENU ITEMS
+import MenuItem from "../models/MenuItem.js";
+import cloudinary from "../utils/cloudinary.js"; 
+
 export const getAdminMenu = async (req, res) => {
   try {
     const items = await MenuItem.find().sort({ createdAt: -1 });
@@ -15,8 +16,6 @@ export const getAdminMenu = async (req, res) => {
   }
 };
 
-
-// ADD MENU ITEM
 export const createMenuItem = async (req, res) => {
   try {
     const { name, price, color, rotation } = req.body;
@@ -27,9 +26,20 @@ export const createMenuItem = async (req, res) => {
       });
     }
 
-    const imageUrl = req.file
-      ? `/uploads/menu/${req.file.filename}`
-      : "";
+    let imageUrl = "";
+
+    if (req.file) {
+      const result = await new Promise((resolve, reject) => {
+        cloudinary.uploader.upload_stream(
+          { folder: "menu" }, 
+          (error, result) => {
+            if (error) reject(error);
+            resolve(result);
+          }
+        ).end(req.file.buffer); 
+      });
+      imageUrl = result.secure_url;
+    }
 
     const item = await MenuItem.create({
       name,
@@ -43,7 +53,6 @@ export const createMenuItem = async (req, res) => {
       message: "Menu item created successfully.",
       item,
     });
-
   } catch (error) {
     console.error("CREATE MENU ITEM ERROR:", error);
 
@@ -52,9 +61,6 @@ export const createMenuItem = async (req, res) => {
     });
   }
 };
-
-
-// UPDATE MENU ITEM
 export const updateMenuItem = async (req, res) => {
   try {
     const { id } = req.params;
@@ -69,17 +75,22 @@ export const updateMenuItem = async (req, res) => {
     }
 
     item.name = name ?? item.name;
-    item.price =
-      price !== undefined
-        ? Number(price)
-        : item.price;
-
+    item.price = price !== undefined ? Number(price) : item.price;
     item.color = color ?? item.color;
     item.rotation = rotation ?? item.rotation;
 
-    // Replace image only if a new image was selected
     if (req.file) {
-      item.image = `/uploads/menu/${req.file.filename}`;
+      const result = await new Promise((resolve, reject) => {
+        cloudinary.uploader.upload_stream(
+          { folder: "menu" },
+          (error, result) => {
+            if (error) reject(error);
+            resolve(result);
+          }
+        ).end(req.file.buffer);
+      });
+      
+      item.image = result.secure_url;
     }
 
     await item.save();
@@ -88,7 +99,6 @@ export const updateMenuItem = async (req, res) => {
       message: "Menu item updated successfully.",
       item,
     });
-
   } catch (error) {
     console.error("UPDATE MENU ITEM ERROR:", error);
 
@@ -98,8 +108,6 @@ export const updateMenuItem = async (req, res) => {
   }
 };
 
-
-// DELETE MENU ITEM
 export const deleteMenuItem = async (req, res) => {
   try {
     const { id } = req.params;
@@ -115,7 +123,6 @@ export const deleteMenuItem = async (req, res) => {
     res.status(200).json({
       message: "Menu item deleted successfully.",
     });
-
   } catch (error) {
     console.error("DELETE MENU ITEM ERROR:", error);
 
