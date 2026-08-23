@@ -68,7 +68,7 @@ const FlavorSlider = () => {
   const [menu, setMenu] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/menu")
+    fetch("/api/menu")
       .then((res) => res.json())
       .then((data) => setMenu(data));
   }, []);

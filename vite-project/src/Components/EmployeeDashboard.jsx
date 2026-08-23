@@ -18,7 +18,7 @@ const EmployeeDashboard = () => {
       }
 
       const res = await fetch(
-        "http://localhost:5000/api/orders/all",
+        "/api/orders/all",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -64,7 +64,7 @@ setOrders(activeOrders);
       const token = localStorage.getItem("token");
 
       const res = await fetch(
-        `http://localhost:5000/api/orders/${orderId}/status`,
+        `/api/orders/${orderId}/status`,
         {
           method: "PATCH",
           headers: {

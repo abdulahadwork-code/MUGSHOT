@@ -43,7 +43,7 @@ const showToast = (type, title, message) => {
         setMenuLoading(true);
         setError("");
 
-        const res = await fetch("http://localhost:5000/api/menu");
+        const res = await fetch("/api/menu");
 
         if (!res.ok) {
           throw new Error("Failed to load menu");
@@ -153,7 +153,7 @@ const showToast = (type, title, message) => {
     setLoading(true);
 
     try {
-      const res = await fetch("http://localhost:5000/api/orders", {
+      const res = await fetch("/api/orders", {
         method: "POST",
 
         headers: {
@@ -287,7 +287,7 @@ const showToast = (type, title, message) => {
                   {menu.map((item) => {
 
                     const imageSource = item.image
-  ? `http://localhost:5000${item.image}`
+  ? `${item.image}`
   : menuImages[item.name] || "/images/placeholder.png";
 
                     return (

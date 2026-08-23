@@ -12,7 +12,7 @@ const LoginPage = () => {
   e.preventDefault();
 
   try {
-    const res = await fetch("http://localhost:5000/api/users/login", {
+    const res = await fetch("/api/users/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -48,7 +48,7 @@ if (data.user.role === "admin") {
  const handleGoogleSuccess = async (credentialResponse) => {
   try {
     const res = await fetch(
-      "http://localhost:5000/api/users/google-auth",
+      "/api/users/google-auth",
       {
         method: "POST",
         headers: {
