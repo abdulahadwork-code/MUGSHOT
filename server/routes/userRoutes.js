@@ -2,7 +2,7 @@ import express from "express"
 import { signupUser,loginUser, requestPasswordReset, resetPassword , googleAuth } from "../controllers/userController.js"
 import { protect, adminOnly } from "../middleware/authMiddleware.js";
 import { addMenuItem } from "../controllers/menuController.js";
-import upload from "../middleware/uploadMiddleware.js";
+
 
 const router = express.Router();
 router.post("/signup",signupUser)
