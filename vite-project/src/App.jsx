@@ -1,4 +1,4 @@
-import NavBar from "./components/NavBar";
+import NavBar from "./Components/NavBar";
 import HeroSection from "./sections/HeroSection";
 
 import { ScrollSmoother, ScrollTrigger } from "gsap/all";
@@ -13,14 +13,14 @@ import FooterSection from "./sections/FooterSection";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useGSAP } from "@gsap/react";
 
-import LoginPage from "./components/LoginPage";
+import LoginPage from "./Components/LoginPage";
 import SignupPage from "./Components/SignupPage";
-import OrderPage from "./components/OrderPage";
+import OrderPage from "./Components/OrderPage";
 
 import AdminDashboard from "./Components/AdminDashboard";
 import EmployeeDashboard from "./Components/EmployeeDashboard";
-import ProtectedRoute from "./components/ProtectedRoute";
-import AccessDenied from "./components/AccessDenied";
+import ProtectedRoute from "./Components/ProtectedRoute";
+import AccessDenied from "./Components/AccessDenied";
 
 import { GoogleOAuthProvider } from "@react-oauth/google";
 
