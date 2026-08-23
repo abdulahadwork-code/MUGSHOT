@@ -2,8 +2,6 @@ import express from "express";
 import { signupUser, loginUser, requestPasswordReset, resetPassword, googleAuth } from "../controllers/userController.js";
 import { protect, adminOnly } from "../middleware/authMiddleware.js";
 import { addMenuItem } from "../controllers/menuController.js";
-
-// 1. ADD THIS IMPORT
 import upload from "../config/multer.js"; 
 
 const router = express.Router();
@@ -14,7 +12,6 @@ router.post("/google-auth", googleAuth);
 router.post("/forgot-password", requestPasswordReset);
 router.post("/reset-password", resetPassword);
 
-// 2. KEPT ONLY THIS VERSION (Deleted the duplicate without multer)
 router.post(
   "/add-menu", 
   protect,              

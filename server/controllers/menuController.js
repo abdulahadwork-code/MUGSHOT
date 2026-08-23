@@ -1,6 +1,5 @@
-// server/controllers/menuController.js
 import MenuItem from "../models/MenuItem.js";
-import cloudinary from "../utils/cloudinary.js"; // Import your cloudinary config
+import cloudinary from "../utils/cloudinary.js";
 
 export const addMenuItem = async (req, res) => {
   try {
@@ -8,18 +7,17 @@ export const addMenuItem = async (req, res) => {
 
     let imageUrl = "";
 
-    // 1. Upload to Cloudinary if a file is provided
     if (req.file) {
       const result = await new Promise((resolve, reject) => {
         cloudinary.uploader.upload_stream(
-          { folder: "menu" }, // Same folder as your other controller
+          { folder: "menu" }, 
           (error, result) => {
             if (error) reject(error);
             resolve(result);
           }
-        ).end(req.file.buffer); // ✅ Uses the memory buffer instead of a local path
+        ).end(req.file.buffer); 
       });
-      imageUrl = result.secure_url; // ✅ Save the public Cloudinary URL
+      imageUrl = result.secure_url; 
     }
 
     const newItem = await MenuItem.create({
@@ -32,8 +30,6 @@ export const addMenuItem = async (req, res) => {
     res.status(201).json({ message: "Coffee added to menu!", item: newItem });
   } catch (error) {
     console.error("ADD MENU ITEM ERROR:", error);
-    
-    // 2. ✅ Fixed: return a 500 response instead of using the undefined 'next' function
     res.status(500).json({ message: error.message });
   }
 };
