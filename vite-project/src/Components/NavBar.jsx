@@ -6,7 +6,7 @@ const NavBar = () => {
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 md:p-9 p-3 flex justify-between items-center">
-      {/* Logo */}
+
       <Link to="/">
         <img
           src="/images/nav-logo.png"
@@ -15,7 +15,6 @@ const NavBar = () => {
         />
       </Link>
 
-      {/* Authentication buttons */}
       {isLoggedIn ? (
         <LogoutButton />
       ) : (

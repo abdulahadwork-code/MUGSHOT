@@ -32,7 +32,6 @@ const EmployeeDashboard = () => {
         throw new Error(data.message);
       }
 
-      // Only show active orders on the employee dashboard
 const activeOrders = data.orders.filter(
   (order) =>
     order.status !== "delivered" &&
@@ -52,7 +51,6 @@ setOrders(activeOrders);
   useEffect(() => {
     fetchOrders();
 
-    // Automatically refresh every 5 seconds
     const interval = setInterval(() => {
       fetchOrders();
     }, 5000);
@@ -85,8 +83,6 @@ setOrders(activeOrders);
         throw new Error(data.message);
       }
 
-      // Update UI immediately
-      // Remove delivered/cancelled orders from the employee dashboard
 if (
   status === "delivered" ||
   status === "cancelled"
@@ -97,7 +93,7 @@ if (
     )
   );
 } else {
-  // Update the order normally
+
   setOrders((previousOrders) =>
     previousOrders.map((order) =>
       order._id === orderId
@@ -134,7 +130,6 @@ if (
   return (
     <div className="min-h-screen bg-[#3b2416] px-8 py-10">
 
-      {/* HEADER */}
       <div className="flex justify-between items-center mb-10">
 
         <div>
@@ -163,16 +158,12 @@ if (
         </div>
       )}
 
-
-      {/* ORDER COUNT */}
       <div className="bg-white rounded-xl shadow p-6 mb-8">
         <h2 className="text-2xl font-bold text-[#6f4e37]">
           Total Orders: {orders.length}
         </h2>
       </div>
 
-
-      {/* ORDERS */}
       {orders.length === 0 ? (
 
         <div className="bg-white rounded-xl shadow p-12 text-center">
@@ -196,7 +187,6 @@ if (
               className="bg-white rounded-2xl shadow-lg p-6"
             >
 
-              {/* ORDER HEADER */}
               <div className="flex justify-between items-start mb-5">
 
                 <div>
@@ -221,8 +211,6 @@ if (
                   </p>
                 </div>
 
-
-                {/* STATUS */}
                 <select
                   value={order.status}
                   onChange={(e) =>
@@ -258,8 +246,6 @@ if (
 
               </div>
 
-
-              {/* ITEMS */}
               <div className="border-t border-gray-200 pt-4">
 
                 <h3 className="font-bold text-xl mb-3">
@@ -299,8 +285,6 @@ if (
 
               </div>
 
-
-              {/* TOTAL */}
               <div className="flex justify-between items-center mt-5">
 
                 <span className="text-xl font-bold">
@@ -313,8 +297,6 @@ if (
 
               </div>
 
-
-              {/* STATUS LABEL */}
               <div className="mt-5">
 
                 <span className="text-gray-500">

@@ -64,7 +64,6 @@ const Slider = ({ menu }) => {
   );
 };
 
-// 📦 OUTER: fetches data, shows placeholder while loading
 const FlavorSlider = () => {
   const [menu, setMenu] = useState([]);
 

@@ -52,12 +52,6 @@ const HeroSection = () => {
         },
         "-=0.6"
       );
-
-
-    // ==========================================
-    // HERO SCROLL ANIMATION
-    // ==========================================
-
     const heroTimeline = gsap.timeline({
       scrollTrigger: {
         trigger: ".hero-container",
@@ -75,11 +69,6 @@ const HeroSection = () => {
       ease: "power1.inOut",
     });
 
-
-    // ==========================================
-    // CLEANUP
-    // ==========================================
-
     return () => {
 
       introTimeline.kill();
@@ -96,11 +85,6 @@ const HeroSection = () => {
     <section className="bg-main-bg">
 
       <div className="hero-container relative overflow-hidden">
-
-
-        {/* ======================================
-            BACKGROUND
-        ====================================== */}
 
         {isTablet ? (
 
@@ -133,11 +117,6 @@ const HeroSection = () => {
 
         )}
 
-
-        {/* ======================================
-            DARK OVERLAY
-        ====================================== */}
-
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 z-[5]"
@@ -148,10 +127,6 @@ const HeroSection = () => {
         />
 
 
-        {/* ======================================
-            HERO CONTENT
-        ====================================== */}
-
         <div
           className="
             hero-content
@@ -161,10 +136,6 @@ const HeroSection = () => {
           "
         >
 
-
-          {/* ====================================
-              MAIN TITLE
-          ==================================== */}
 
           <div
             className="
@@ -185,11 +156,6 @@ const HeroSection = () => {
             </h1>
 
           </div>
-
-
-          {/* ====================================
-              SUBTITLE BANNER
-          ==================================== */}
 
           <div
             className="
@@ -214,10 +180,6 @@ const HeroSection = () => {
           </div>
 
 
-          {/* ====================================
-              DESCRIPTION
-          ==================================== */}
-
           <h2
             className="
               relative
@@ -229,10 +191,6 @@ const HeroSection = () => {
             barista with every deliciously smooth sip.
           </h2>
 
-
-          {/* ====================================
-              BUTTON
-          ==================================== */}
 
           <div
             className="

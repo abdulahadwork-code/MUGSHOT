@@ -86,8 +86,6 @@ const AdminDashboard = () => {
     alert("Please enter a valid price.");
     return;
   }
-
-  // Image is required when creating a new item
   if (!editingId && !imageFile) {
     alert("Please select an image.");
     return;
@@ -102,7 +100,7 @@ const AdminDashboard = () => {
 
     const method = editingId ? "PUT" : "POST";
 
-    // IMPORTANT: use FormData for file upload
+  
     const formData = new FormData();
 
     formData.append("name", name.trim());
